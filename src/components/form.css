@@ -1,0 +1,169 @@
+.form-body{
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); /* Soft green gradient */
+}
+
+
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgb(194, 191, 191);
+  }
+  .heading{
+    margin-left:50px;
+    color: rgb(76,175,80);
+    font-size: 18px;
+  }
+
+  label{
+    font-weight:900px;
+    font-family: 'poppins', sans-serif;
+
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight:600;
+    color: rgb(13,13,13);
+    font-family: 'poppins', sans-serif;
+    
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  }
+  
+  input::placeholder {
+    color: #999;
+  }
+  
+  small {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Optional: Add error message styling */
+  .error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  
+  /* Optional: Add media query for mobile responsiveness */
+  @media (max-width: 576px) {
+    .form-container {
+      margin: 10px;
+      padding: 20px;
+    }
+    
+    input {
+      font-size: 14px;
+    }
+    
+    button {
+      padding: 10px 20px;
+    }
+  }
+
+  /* Dropdown Styles */
+.dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .dropdown-button {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .dropdown-button:hover {
+    border-color: #4CAF50;
+  }
+  
+  .checkbox-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 10px;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .checkbox-label:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .checkbox-label input {
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
