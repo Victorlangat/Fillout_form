@@ -38,132 +38,123 @@ const FamilyForm = () => {
   };
 
   return (
-
-  <div className='form-body'>
-   \
-
-
-
-   <div className="form-container">
-    <div className='heading'>
-
-       <h2>Barabiiy Family Information Form</h2>
-
-    </div>
-      
-      <form onSubmit={handleSubmit}>
-        {/* House Dropdown */}
-        <div className="form-group dropdown-container">
-          <label>House:</label>
-          <div className="dropdown-wrapper">
-            <button 
-              type="button" 
-              className="dropdown-button"
-              onClick={toggleDropdown}
-            >
-              {formData.house.length > 0 
-                ? formData.house.join(', ') 
-                : 'Select House Options'}
-            </button>
-            {showDropdown && (
-              <div className="checkbox-options">
-                {houseOptions.map(option => (
-                  <label key={option} className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      value={option}
-                      checked={formData.house.includes(option)}
-                      onChange={handleHouseChange}
-                    />
-                    {option}
-                  </label>
-                ))}
+    <div className='form-body'>
+      <div className="form-container">
+        <div className='heading'>
+          <h2>Barabiiy Family Information Form</h2>
+        </div>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-grid">
+            {/* House Dropdown */}
+            <div className="form-group dropdown-container">
+              <label>House:</label>
+              <div className="dropdown-wrapper">
+                <button 
+                  type="button" 
+                  className="dropdown-button"
+                  onClick={toggleDropdown}
+                >
+                  {formData.house.length > 0 
+                    ? formData.house.join(', ') 
+                    : 'Select House Options'}
+                </button>
+                {showDropdown && (
+                  <div className="checkbox-options">
+                    {houseOptions.map(option => (
+                      <label key={option} className="checkbox-label">
+                        <input
+                          type="checkbox"
+                          value={option}
+                          checked={formData.house.includes(option)}
+                          onChange={handleHouseChange}
+                        />
+                        {option}
+                      </label>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+
+            {/* Name Fields Group */}
+            <div className="input-group">
+              <div className="form-group">
+                <label>
+                  Father's Name:
+                  <input
+                    type="text"
+                    name="fatherName"
+                    value={formData.fatherName}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Mother's Name:
+                  <input
+                    type="text"
+                    name="motherName"
+                    value={formData.motherName}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+              </div>
+            </div>
+
+            {/* Username */}
+            <div className="form-group">
+              <label>
+                Your Name:
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
+
+            {/* Spouse Name */}
+            <div className="form-group">
+              <label>
+                Spouse Name:
+                <input
+                  type="text"
+                  name="spouse"
+                  value={formData.spouse}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
+
+            {/* Phone Number */}
+            <div className="form-group">
+              <label>
+                Phone Number:
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  pattern="[0-9]{10}"
+                  required
+                />
+                <small>Format: +254********</small>
+              </label>
+            </div>
+
+            <button type="submit">Submit</button>
           </div>
-        </div>
-
-        {/* Father's Name */}
-        <div className="form-group">
-          <label>
-            Father's Name:
-            <input
-              type="text"
-              name="fatherName"
-              value={formData.fatherName}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-
-        {/* Mother's Name */}
-        <div className="form-group">
-          <label>
-            Mother's Name:
-            <input
-              type="text"
-              name="motherName"
-              value={formData.motherName}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-
-        {/* Username */}
-        <div className="form-group">
-          <label>
-            Your Name:
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-
-    
-
-        {/* Spouse Name */}
-        <div className="form-group">
-          <label>
-            Spouse Name:
-            <input
-              type="text"
-              name="spouse"
-              value={formData.spouse}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-
-       {/* Phone Number */}
-        <div className="form-group">
-          <label>
-            Phone Number:
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              pattern="[0-9]{10}"
-              required
-            />
-            <small>Format: +254********</small>
-          </label>
-        </div>
-
-
-        <button type="submit">Submit</button>
-      </form>
-   </div>
-
-  </div>
-    
+        </form>
+      </div>
+    </div>
   );
 };
 
