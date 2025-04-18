@@ -180,3 +180,41 @@ button[type="submit"]:active {
     gap: 2rem;
   }
 }
+
+/* Spouse Status Specific Styles */
+.spouse-status-container {
+  margin-bottom: 1.5rem;
+}
+
+.spouse-name-entrance {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Radio Button Custom Styles */
+.checkbox-label input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4CAF50;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="radio"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #4CAF50;
+  border-radius: 50%;
+}
