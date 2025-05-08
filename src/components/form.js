@@ -3,13 +3,13 @@ import './form.css';
 
 const FamilyForm = () => {
   const [formData, setFormData] = useState({
-    house: [],
+    house: '',
     fatherName: '',
     motherName: '',
     username: '',
     phone: '',
     spouse: '',
-    hasSpouse: null // null | true | false
+    hasSpouse: null
   });
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -19,11 +19,10 @@ const FamilyForm = () => {
 
   const handleHouseChange = (e) => {
     const value = e.target.value;
-    const updatedHouses = formData.house.includes(value)
-      ? formData.house.filter(item => item !== value)
-      : [...formData.house, value];
-
-    setFormData({ ...formData, house: updatedHouses });
+    setFormData(prev => ({
+      ...prev,
+      house: prev.house === value ? '' : value
+    }));
   };
 
   const handleSpouseStatusChange = (value) => {
@@ -31,13 +30,13 @@ const FamilyForm = () => {
       setFormData({
         ...formData,
         hasSpouse: true,
-        spouse: '' // Reset spouse name when changing status
+        spouse: ''
       });
     } else {
       setFormData({
         ...formData,
         hasSpouse: false,
-        spouse: '' // Clear spouse name
+        spouse: ''
       });
     }
     setShowSpouseDropdown(false);
@@ -76,18 +75,17 @@ const FamilyForm = () => {
                   className="dropdown-button"
                   onClick={toggleDropdown}
                 >
-                  {formData.house.length > 0
-                    ? formData.house.join(', ')
-                    : 'Select House Options'}
+                  {formData.house || 'Select One House'}
                 </button>
                 {showDropdown && (
                   <div className="checkbox-options">
                     {houseOptions.map(option => (
                       <label key={option} className="checkbox-label">
                         <input
-                          type="checkbox"
+                          type="radio"
+                          name="house"
                           value={option}
-                          checked={formData.house.includes(option)}
+                          checked={formData.house === option}
                           onChange={handleHouseChange}
                         />
                         {option}
@@ -96,6 +94,20 @@ const FamilyForm = () => {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Username */}
+            <div className="form-group">
+              <label>
+                Your Name:
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
             </div>
 
             {/* Name Fields Group */}
@@ -125,20 +137,6 @@ const FamilyForm = () => {
                   />
                 </label>
               </div>
-            </div>
-
-            {/* Username */}
-            <div className="form-group">
-              <label>
-                Your Name:
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
-              </label>
             </div>
 
             {/* Spouse Status Dropdown */}
