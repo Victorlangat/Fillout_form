@@ -9,7 +9,9 @@ const FamilyForm = () => {
     username: '',
     phone: '',
     spouse: '',
-    hasSpouse: null
+    hasSpouse: null,
+    hasChildren: false,
+    children: ['']
   });
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -26,20 +28,25 @@ const FamilyForm = () => {
   };
 
   const handleSpouseStatusChange = (value) => {
-    if (value === 'Has Spouse') {
-      setFormData({
-        ...formData,
-        hasSpouse: true,
-        spouse: ''
-      });
-    } else {
-      setFormData({
-        ...formData,
-        hasSpouse: false,
-        spouse: ''
-      });
-    }
+    const hasSpouse = value === 'Has Spouse';
+    setFormData({
+      ...formData,
+      hasSpouse,
+      spouse: '',
+      hasChildren: false,
+      children: ['']
+    });
     setShowSpouseDropdown(false);
+  };
+
+  const handleChildrenChange = (index, value) => {
+    const newChildren = [...formData.children];
+    newChildren[index] = value;
+    setFormData({ ...formData, children: newChildren });
+  };
+
+  const addChildField = () => {
+    setFormData({ ...formData, children: [...formData.children, ''] });
   };
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
@@ -110,6 +117,22 @@ const FamilyForm = () => {
               </label>
             </div>
 
+            {/* Phone Number */}
+            <div className="form-group">
+              <label>
+                Phone Number:
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  pattern="[0-9]{10}"
+                  required
+                />
+                <small>Format: 07******** or 01********</small>
+              </label>
+            </div>
+
             {/* Name Fields Group */}
             <div className="input-group">
               <div className="form-group">
@@ -175,36 +198,56 @@ const FamilyForm = () => {
 
             {/* Conditional Spouse Name Input */}
             {formData.hasSpouse && (
-              <div className="form-group">
-                <label>
-                  Spouse Name:
-                  <input
-                    type="text"
-                    name="spouse"
-                    value={formData.spouse}
-                    onChange={handleChange}
-                    required={formData.hasSpouse}
-                    placeholder="Enter spouse's name"
-                  />
-                </label>
-              </div>
-            )}
+              <>
+                <div className="form-group">
+                  <label>
+                    Spouse Name:
+                    <input
+                      type="text"
+                      name="spouse"
+                      value={formData.spouse}
+                      onChange={handleChange}
+                      required={formData.hasSpouse}
+                      placeholder="Enter spouse's name"
+                    />
+                  </label>
+                </div>
 
-            {/* Phone Number */}
-            <div className="form-group">
-              <label>
-                Phone Number:
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  pattern="[0-9]{10}"
-                  required
-                />
-                <small>Format: 07******** or 01********</small>
-              </label>
-            </div>
+                {/* Has Children Checkbox */}
+                <div className="form-group">
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      checked={formData.hasChildren}
+                      onChange={(e) => setFormData({ ...formData, hasChildren: e.target.checked })}
+                    />
+                    Do you have children?
+                  </label>
+                </div>
+
+                {/* Children Inputs */}
+                {formData.hasChildren && (
+                  <div className="children-input-group">
+                    {formData.children.map((child, index) => (
+                      <div key={index} className="form-group">
+                        <label>
+                          Child {index + 1} Name:
+                          <input
+                            type="text"
+                            value={child}
+                            onChange={(e) => handleChildrenChange(index, e.target.value)}
+                            placeholder="Enter child's name"
+                          />
+                        </label>
+                      </div>
+                    ))}
+                    <div className="add-child-link" onClick={addChildField}>
+                      + Add another child
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
 
             <button type="submit">Submit</button>
           </div>
